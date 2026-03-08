@@ -1,0 +1,84 @@
+@import "tailwindcss";
+
+:root {
+  --red: #c0392b;
+  --red-glow: rgba(192, 57, 43, 0.4);
+  --gold: #c9a96e;
+  --bg: #060606;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  background: #060606;
+  /* Disable smooth scroll — scroll hijacking handles it instead */
+  scroll-behavior: auto;
+}
+
+body {
+  background: #060606;
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--red);
+  color: #fff;
+}
+
+::-webkit-scrollbar { width: 2px; }
+::-webkit-scrollbar-track { background: #060606; }
+::-webkit-scrollbar-thumb { background: var(--red); }
+
+/* ── Typography ── */
+.font-display { font-family: 'Playfair Display', serif; }
+
+/* ── Film grain ── */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9998;
+  opacity: 0.05;
+  mix-blend-mode: overlay;
+}
+
+/* ── Glows ── */
+.glow-red {
+  text-shadow:
+    0 0 40px rgba(192,57,43,0.7),
+    0 0 90px rgba(192,57,43,0.3);
+}
+
+/* ── Cinematic progress bar ── */
+#scroll-progress {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  width: 100%;
+  background: linear-gradient(90deg, #c0392b, #e74c3c);
+  z-index: 10000;
+  transform-origin: left;
+}
+
+/* ── Scene chapter badge ── */
+.scene-number {
+  position: fixed;
+  bottom: 2.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  z-index: 9990;
+  pointer-events: none;
+}
