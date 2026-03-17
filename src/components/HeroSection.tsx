@@ -6,27 +6,6 @@ import { useRef } from "react";
 
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
-// Individual letter animation for the name
-function AnimatedName({ name }: { name: string }) {
-  const letters = name.split("");
-  return (
-    <div className="overflow-hidden inline-flex flex-wrap justify-center">
-      {letters.map((char, i) => (
-        <motion.span
-          key={i}
-          initial={{ y: "120%", opacity: 0 }}
-          animate={{ y: "0%", opacity: 1 }}
-          transition={{ duration: 0.8, ease: EASE, delay: 1.6 + i * 0.04 }}
-          className="inline-block"
-          style={{ whiteSpace: char === " " ? "pre" : "normal" }}
-        >
-          {char === " " ? "\u00A0" : char}
-        </motion.span>
-      ))}
-    </div>
-  );
-}
-
 export default function HeroSection() {
   const ref = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
@@ -145,25 +124,9 @@ export default function HeroSection() {
           ))}
         </div>
 
-        {/* Expanding red rule */}
-        <motion.div
-          initial={{ scaleX: 0, opacity: 0 }}
-          animate={{ scaleX: 1, opacity: 1 }}
-          transition={{ duration: 1.2, delay: 1.4, ease: EASE }}
-          className="mx-auto mb-10 h-px w-32"
-          style={{
-            background: "linear-gradient(90deg, transparent, #c0392b 40%, #e74c3c 60%, transparent)",
-            transformOrigin: "center",
-          }}
-        />
 
-        {/* Name — letter by letter */}
-        <h1
-          className="font-display font-black uppercase tracking-widest mb-5 glow-red"
-          style={{ fontSize: "clamp(2.8rem, 9vw, 8rem)", lineHeight: 1 }}
-        >
-          <AnimatedName name="Dr Alan V.L." />
-        </h1>
+
+
 
         {/* Title — slides up */}
         <div className="overflow-hidden mb-3">

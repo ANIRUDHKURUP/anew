@@ -140,36 +140,9 @@ export default function FinalSection() {
           />
         </div>
 
-        {/* Expanding red rule */}
-        <FadeIn delay={0.6}>
-          <motion.div
-            initial={{ scaleX: 0 }}
-            whileInView={{ scaleX: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1.2, ease: EASE, delay: 0.7 }}
-            className="mx-auto mb-12 h-px w-36"
-            style={{
-              background: "linear-gradient(90deg, transparent, #c0392b 35%, #e74c3c 65%, transparent)",
-              transformOrigin: "center",
-            }}
-          />
-        </FadeIn>
+        {/* Expanding red rule removed per user request */}
 
-        {/* Name */}
-        <WordReveal
-          text="Dr Alan V.L."
-          as="h2"
-          className="font-display font-black uppercase tracking-widest glow-red"
-          style={{
-            fontSize: "clamp(2.8rem, 7vw, 6rem)",
-            color: "#fff",
-            display: "block",
-            lineHeight: 1,
-            marginBottom: "0.5rem",
-          } as React.CSSProperties}
-          baseDelay={0.7}
-          wordDelay={0.12}
-        />
+        {/* Name removed per user request */}
 
         <FadeIn delay={1}>
           <p
@@ -237,15 +210,6 @@ export default function FinalSection() {
           </div>
         </FadeIn>
 
-        {/* Footer */}
-        <FadeIn delay={1.35}>
-          <p
-            className="mt-24 text-[10px] tracking-[0.3em] uppercase"
-            style={{ color: "rgba(255,255,255,0.18)" }}
-          >
-            © {new Date().getFullYear()} Dr Alan V.L. · The Medical Detective · All Rights Reserved
-          </p>
-        </FadeIn>
       </div>
     </section>
   );

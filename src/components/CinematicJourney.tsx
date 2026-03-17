@@ -51,7 +51,7 @@ const SCENES: SceneConfig[] = [
   // 1 — STREET
   {
     id: "street",
-    image: "/section_street.png",
+    image: "/street.jpeg",
     enterAt: 0.11,
     fullAt: 0.17,
     leaveAt: 0.27,
@@ -60,14 +60,14 @@ const SCENES: SceneConfig[] = [
     headline: ["₹600 a day.", "A crowded street."],
     sub: "Before the white coat, there were flyers.",
     overlay: "rgba(0,0,0,0.52)",
-    textSide: "left",
-    vertPos: "bottom",
+    textSide: "right",
+    vertPos: "center",
     kenBurnsDir: "out",
   },
   // 2 — CONSTRUCTION
   {
     id: "construction",
-    image: "/section_construction.png",
+    image: "/construction.jpeg",
     enterAt: 0.29,
     fullAt: 0.35,
     leaveAt: 0.45,
@@ -77,13 +77,13 @@ const SCENES: SceneConfig[] = [
     sub: "The construction site didn't break him — it forged him.",
     overlay: "rgba(0,0,0,0.50)",
     textSide: "left",
-    vertPos: "bottom",
+    vertPos: "center",
     kenBurnsDir: "in",
   },
   // 3 — AMBULANCE NIGHT
   {
     id: "ambulance",
-    image: "/section_ambulance.png",
+    image: "/ambulance.jpeg",
     enterAt: 0.47,
     fullAt: 0.53,
     leaveAt: 0.62,
@@ -99,7 +99,7 @@ const SCENES: SceneConfig[] = [
   // 4 — OBSERVATION
   {
     id: "observation",
-    image: "/section_observation.png",
+    image: "/observation.jpeg",
     enterAt: 0.64,
     fullAt: 0.70,
     leaveAt: 0.78,
@@ -108,7 +108,7 @@ const SCENES: SceneConfig[] = [
     headline: ["He wasn't just watching.", "He was learning."],
     sub: "The streets became his first laboratory.",
     overlay: "rgba(0,0,0,0.55)",
-    textSide: "right",
+    textSide: "left",
     vertPos: "center",
     kenBurnsDir: "in",
   },
@@ -130,7 +130,7 @@ const SCENES: SceneConfig[] = [
   // 6 — DETECTIVE REVEAL (final cinematic beat)
   {
     id: "detective",
-    image: "/section_detective.png",
+    image: "/detective.jpeg",
     enterAt: 0.92,
     fullAt: 0.96,
     leaveAt: 0.99,
@@ -310,40 +310,27 @@ function TitleCardScene({ scroll }: { scroll: MotionValue<number> }) {
       style={{ opacity }}
       className="absolute inset-0 flex flex-col items-center justify-center overflow-hidden"
     >
+      {/* Video Background */}
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline
+        className="absolute inset-0 w-full h-full object-cover"
+        style={{ opacity: 0.6 }}
+      >
+        <source src="/raining.mp4" type="video/mp4" />
+      </video>
+
+      {/* Dark overlay to ensure text readability */}
       <div
         className="absolute inset-0"
-        style={{ background: "#060606" }}
+        style={{ background: "rgba(6, 6, 6, 0.4)" }}
       />
 
-      {/* Ambient red glow */}
-      <motion.div
-        className="absolute pointer-events-none"
-        style={{
-          width: "70vw",
-          height: "70vw",
-          borderRadius: "50%",
-          background:
-            "radial-gradient(circle, rgba(192,57,43,0.1) 0%, transparent 70%)",
-          top: "50%",
-          left: "50%",
-          x: "-50%",
-          y: "-50%",
-        }}
-        animate={{ scale: [1, 1.1, 1], opacity: [0.6, 1, 0.6] }}
-        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-      />
 
-      {/* Animated scan line */}
-      <motion.div
-        className="absolute left-0 right-0 h-px pointer-events-none"
-        style={{
-          background:
-            "linear-gradient(90deg, transparent, rgba(192,57,43,0.5), transparent)",
-          top: "50%",
-        }}
-        animate={{ opacity: [0, 0.8, 0], y: ["-50vh", "0vh", "50vh"] }}
-        transition={{ duration: 6, repeat: Infinity, ease: "linear", repeatDelay: 4 }}
-      />
+
+
 
       {/* Corner brackets */}
       {[
@@ -364,7 +351,7 @@ function TitleCardScene({ scroll }: { scroll: MotionValue<number> }) {
 
       {/* Name block — mount-time animation */}
       <motion.div
-        style={{ y: nameY }}
+        style={{ y: nameY, marginTop: "-100px" }}
         className="relative z-10 text-center px-6"
       >
         {/* Teaser lines */}
@@ -391,62 +378,57 @@ function TitleCardScene({ scroll }: { scroll: MotionValue<number> }) {
           ))}
         </div>
 
-        {/* Red rule */}
-        <motion.div
-          initial={{ scaleX: 0 }}
-          animate={{ scaleX: 1 }}
-          transition={{ duration: 1.2, delay: 1.5, ease: [0.16, 1, 0.3, 1] }}
-          className="mx-auto mb-8 h-px w-32"
-          style={{
-            background:
-              "linear-gradient(90deg, transparent, #c0392b 40%, #e74c3c 60%, transparent)",
-            transformOrigin: "center",
-          }}
-        />
+        {/* 'Old Money' formatted name */}
+        <div className="overflow-hidden mt-8">
+          <motion.h2
+            initial={{ y: "110%", opacity: 0 }}
+            animate={{ y: "0%", opacity: 1 }}
+            transition={{ duration: 1.2, delay: 1.4, ease: [0.16, 1, 0.3, 1] }}
+            className="font-display"
+            style={{
+              fontSize: "clamp(3.5rem, 8vw, 6rem)",
+              color: "rgba(255, 255, 255, 0.95)",
+              letterSpacing: "0.02em",
+              fontWeight: 400,
+            }}
+          >
+            DR. Alan V L
+          </motion.h2>
+        </div>
 
-        {/* Name */}
-        <div className="overflow-hidden mb-4">
-          <motion.h1
+        {/* 'Old Money' formatted subtitle */}
+        <div className="overflow-hidden mt-3">
+          <motion.p
             initial={{ y: "110%", opacity: 0 }}
             animate={{ y: "0%", opacity: 1 }}
             transition={{ duration: 1.2, delay: 1.6, ease: [0.16, 1, 0.3, 1] }}
-            className="font-display font-black uppercase glow-red"
+            className="font-display italic"
             style={{
-              fontSize: "clamp(3.5rem, 10vw, 9rem)",
-              lineHeight: 1,
-              letterSpacing: "-0.01em",
-              color: "#fff",
+              fontSize: "clamp(1rem, 2.5vw, 1.6rem)",
+              color: "rgba(255, 255, 255, 0.6)",
+              letterSpacing: "0.06em",
+              fontWeight: 400,
             }}
           >
-            Dr Alan V.L.
-          </motion.h1>
-        </div>
-
-        {/* Subtitle */}
-        <div className="overflow-hidden mb-2">
-          <motion.p
-            initial={{ y: "110%" }}
-            animate={{ y: "0%" }}
-            transition={{ duration: 1, delay: 2.05, ease: [0.16, 1, 0.3, 1] }}
-            className="font-display italic font-semibold"
-            style={{
-              fontSize: "clamp(1.2rem, 3vw, 2.4rem)",
-              color: "#c0392b",
-            }}
-          >
-            The Medical Detective
+            The Medical detective
           </motion.p>
         </div>
-
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1.2, delay: 2.7 }}
-          className="text-xs tracking-[0.3em] uppercase mt-2"
-          style={{ color: "rgba(255,255,255,0.3)" }}
-        >
-          Author&nbsp;·&nbsp;Entrepreneur&nbsp;·&nbsp;Public Speaker
-        </motion.p>
+        {/* Roles */}
+        <div className="overflow-hidden mt-6">
+          <motion.p
+            initial={{ y: "110%", opacity: 0 }}
+            animate={{ y: "0%", opacity: 1 }}
+            transition={{ duration: 1.2, delay: 1.8, ease: [0.16, 1, 0.3, 1] }}
+            className="font-display font-medium uppercase"
+            style={{
+              fontSize: "clamp(0.6rem, 1.2vw, 0.85rem)",
+              color: "rgba(255, 255, 255, 0.4)",
+              letterSpacing: "0.4em",
+            }}
+          >
+            Author &nbsp;·&nbsp; Entrepreneur &nbsp;·&nbsp; Public Speaker
+          </motion.p>
+        </div>
       </motion.div>
 
       {/* Scroll to begin */}

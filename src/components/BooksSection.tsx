@@ -209,7 +209,7 @@ export default function BooksSection() {
   return (
     <section
       id="books"
-      className="relative py-36 overflow-hidden"
+      className="relative py-36 min-h-screen flex flex-col justify-center overflow-hidden"
       style={{ background: "#070707" }}
     >
       {/* Ambient glow */}
@@ -227,27 +227,32 @@ export default function BooksSection() {
         style={{ background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent)" }}
       />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-16 lg:px-24">
+      <div className="relative z-10 w-full max-w-6xl mx-auto px-6 md:px-16 lg:px-24 translate-x-[170px]">
         {/* Header */}
-        <div className="mb-20">
+        <div className="mb-20 flex flex-col items-center text-center">
           <FadeIn delay={0.05}>
-            <p
-              className="text-[10px] tracking-[0.45em] uppercase font-semibold mb-5"
-              style={{ color: "#c0392b" }}
-            >
-              Chapter VIII — Author
-            </p>
+            <div className="flex items-center gap-4 justify-center mb-5">
+              <span className="w-8 h-px bg-[#c0392b] opacity-80" />
+              <p
+                className="text-[10px] tracking-[0.45em] uppercase font-semibold m-0"
+                style={{ color: "#c0392b" }}
+              >
+                Chapter VIII — Author
+              </p>
+              <span className="w-8 h-px bg-[#c0392b] opacity-80" />
+            </div>
           </FadeIn>
 
           <WordReveal
             text="Words That Change Lives"
             as="h2"
-            className="font-display font-black"
+            className="font-display font-black text-center"
             style={{
               fontSize: "clamp(2.2rem, 5vw, 4rem)",
               color: "#fff",
               lineHeight: 1.05,
               display: "block",
+              textAlign: "center",
             }}
             baseDelay={0.1}
             wordDelay={0.07}
@@ -255,7 +260,7 @@ export default function BooksSection() {
 
           <FadeIn delay={0.5}>
             <p
-              className="text-sm md:text-base max-w-md mt-4"
+              className="text-sm md:text-base max-w-md mx-auto mt-4 text-center"
               style={{ color: "rgba(255,255,255,0.4)", fontWeight: 300, lineHeight: 1.8 }}
             >
               Three books. Three perspectives. One relentless drive to share truth.
@@ -264,7 +269,7 @@ export default function BooksSection() {
         </div>
 
         {/* Book cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-start translate-y-[30px]">
           {books.map((book, i) => (
             <TiltBookCard key={book.id} book={book} index={i} />
           ))}

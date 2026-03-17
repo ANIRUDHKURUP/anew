@@ -2,6 +2,7 @@ import CinematicJourney from "@/components/CinematicJourney";
 import EmpireSection from "@/components/EmpireSection";
 import BooksSection from "@/components/BooksSection";
 import FinalSection from "@/components/FinalSection";
+import FooterSection from "@/components/FooterSection";
 import ScrollUI from "@/components/ScrollUI";
 
 export default function Home() {
@@ -22,6 +23,7 @@ export default function Home() {
         <EmpireSection />
         <BooksSection />
         <FinalSection />
+        <FooterSection />
       </main>
     </>
   );

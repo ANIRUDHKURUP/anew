@@ -132,7 +132,7 @@ export default function EmpireSection() {
   return (
     <section
       id="empire"
-      className="relative py-36 overflow-hidden"
+      className="relative py-36 min-h-screen flex flex-col justify-center overflow-hidden"
       style={{ background: "#060606" }}
     >
       {/* Grid background */}
@@ -150,28 +150,33 @@ export default function EmpireSection() {
         style={{ background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent)" }}
       />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-16 lg:px-24">
+      <div className="relative z-10 w-full max-w-6xl mx-auto px-6 md:px-16 lg:px-24 translate-x-[170px]">
         {/* Section header */}
-        <div className="mb-20">
+        <div className="mb-20 flex flex-col items-center text-center">
           <FadeIn delay={0.05}>
-            <p
-              className="text-[10px] tracking-[0.45em] uppercase font-semibold mb-5"
-              style={{ color: "#c0392b" }}
-            >
-              Chapter VII
-            </p>
+            <div className="flex items-center gap-4 justify-center mb-5">
+              <span className="w-8 h-px bg-[#c0392b] opacity-80" />
+              <p
+                className="text-[10px] tracking-[0.45em] uppercase font-semibold m-0"
+                style={{ color: "#c0392b" }}
+              >
+                Chapter VII
+              </p>
+              <span className="w-8 h-px bg-[#c0392b] opacity-80" />
+            </div>
           </FadeIn>
 
           <WordReveal
             text="The Empire He Built"
             as="h2"
-            className="font-display font-black"
+            className="font-display font-black text-center"
             style={{
               fontSize: "clamp(2.2rem, 5vw, 4rem)",
               color: "#fff",
               display: "block",
               lineHeight: 1.05,
               marginBottom: "1rem",
+              textAlign: "center",
             } as React.CSSProperties}
             baseDelay={0.1}
             wordDelay={0.08}
@@ -179,7 +184,7 @@ export default function EmpireSection() {
 
           <FadeIn delay={0.5}>
             <p
-              className="text-sm md:text-base max-w-md mt-4"
+              className="text-sm md:text-base max-w-md mx-auto mt-4 text-center"
               style={{ color: "rgba(255,255,255,0.38)", fontWeight: 300, lineHeight: 1.8 }}
             >
               From survival to scale — Dr Alan founded companies that are reshaping healthcare across India.
@@ -188,7 +193,7 @@ export default function EmpireSection() {
         </div>
 
         {/* Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 translate-y-[30px]">
           {companies.map((company, i) => (
             <CompanyCard key={company.name} company={company} index={i} />
           ))}
